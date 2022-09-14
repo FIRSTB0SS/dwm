@@ -5,29 +5,21 @@
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const Gap default_gap        = {.isgap = 0, .realgap = 0, .gappx = 8};
-
 static const unsigned int snap      = 32;       /* snap pixel */
-
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
-
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-
-static const char *fonts[]          = { "Roboto:size=12" }; 
-static const char dmenufont[]       = "Roboto:size=12";
-
+static const char *fonts[]          = { "Roboto Mono:size=12" }; 
+static const char dmenufont[]       = "Roboto Mono:size=12";
 static const char col_bgnorm[]         = "#24273a";
 static const char col_bgsel[]          = "#8aadf4";
-
 static const char col_bordnorm[]       = "#494d64";
 static const char col_bordsel[]        = "#8aadf4";
-
 static const char col_fg[]             = "#cad3f5";
-
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_fg, col_bgnorm, col_bordnorm },
@@ -88,20 +80,20 @@ static const char *brupcmd[] = { "brightnessctl", "set", "+10%", NULL };
 static const char *brdowncmd[] = { "brightnessctl", "set", "10%-", NULL };
 
 static Key keys[] = {
-	/* modifier                     key        function        argument */
-	{ MODKEY,			XK_n,	   spawn,	   {.v = netcmd } },
-	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,      spawn,          SHCMD("discord --enable-gpu-rasterization") },
-	{ MODKEY,                       XK_n,      spawn,          SHCMD("pcmanfm") },
-	{ MODKEY,                       XK_c,      spawn,          SHCMD("caprine") },
-	{ MODKEY,                       XK_a,      spawn,          SHCMD("spotify") },
-	{ MODKEY,                       XK_w,      spawn,          SHCMD("brave") },
-	{ MODKEY,                       XK_g,      spawn,          SHCMD("gimp") },
-	{ MODKEY,                       XK_m,      spawn,          SHCMD("pavucontrol") },
-	{ MODKEY,                       XK_p,      spawn,          SHCMD("sh /home/piotr/.config/dmenu/scripts/powermenu.sh") },
-	{ MODKEY|ControlMask,           XK_Delete, spawn,          SHCMD("alacritty -e htop") },
-	{0,                             XK_Print,  spawn,          SHCMD("flameshot gui") },
+	/* modifier                     key        function        	argument */
+	{ MODKEY,						XK_n,	   spawn,			{.v = netcmd } },
+	{ MODKEY,                       XK_d,      spawn,			{.v = dmenucmd } },
+	{ MODKEY,                       XK_Return, spawn,			{.v = termcmd } },
+	{ MODKEY,                       XK_b,      spawn,          	SHCMD("discord --enable-gpu-rasterization") },
+	{ MODKEY,                       XK_n,      spawn,          	SHCMD("pcmanfm") },
+	{ MODKEY,                       XK_c,      spawn,          	SHCMD("caprine") },
+	{ MODKEY,                       XK_a,      spawn,          	SHCMD("spotify") },
+	{ MODKEY,                       XK_w,      spawn,          	SHCMD("brave") },
+	{ MODKEY,                       XK_g,      spawn,          	SHCMD("gimp") },
+	{ MODKEY,                       XK_m,      spawn,          	SHCMD("pavucontrol") },
+	{ MODKEY,                       XK_p,      spawn,          	SHCMD("sh /home/piotr/.config/dmenu/scripts/powermenu.sh") },
+	{ MODKEY|ControlMask,           XK_Delete, spawn,          	SHCMD("alacritty -e htop") },
+	{0,                             XK_Print,  spawn,          	SHCMD("flameshot gui") },
 
 	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
 
