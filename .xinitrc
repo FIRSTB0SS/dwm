@@ -10,7 +10,8 @@ mkdir -p "$HOME"/.local/share/keyrings
 
 # DM
 
-#change username before using this xinitrc file
-sh /home/abhi/autostart.sh &
+#uncomment and change path before using this xinitrc file
+#sh /path/to/autostart.sh &
+
 exec slstatus &
 exec dwm
