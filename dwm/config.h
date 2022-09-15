@@ -81,9 +81,9 @@ static const char *brdowncmd[] = { "brightnessctl", "set", "10%-", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        	argument */
-	{ MODKEY,						XK_n,	   spawn,			{.v = netcmd } },
-	{ MODKEY,                       XK_d,      spawn,			{.v = dmenucmd } },
-	{ MODKEY,                       XK_Return, spawn,			{.v = termcmd } },
+	{ MODKEY,			XK_n,	   spawn,		{.v = netcmd } },
+	{ MODKEY,                       XK_d,      spawn,		{.v = dmenucmd } },
+	{ MODKEY,                       XK_Return, spawn,		{.v = termcmd } },
 	{ MODKEY,                       XK_b,      spawn,          	SHCMD("discord --enable-gpu-rasterization") },
 	{ MODKEY,                       XK_n,      spawn,          	SHCMD("pcmanfm") },
 	{ MODKEY,                       XK_c,      spawn,          	SHCMD("caprine") },
