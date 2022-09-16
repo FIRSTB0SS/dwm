@@ -3,33 +3,37 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const Gap default_gap        = {.isgap = 0, .realgap = 0, .gappx = 8};
-static const unsigned int snap      = 32;       /* snap pixel */
-static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
-static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
-static const unsigned int systrayspacing = 2;   /* systray spacing */
-static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
-static const int showsystray        = 1;     /* 0 means no systray */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Roboto Mono:size=12" }; 
-static const char dmenufont[]       = "Roboto Mono:size=12";
-static const char col_bgnorm[]         = "#24273a";
-static const char col_bgsel[]          = "#8aadf4";
-static const char col_bordnorm[]       = "#494d64";
-static const char col_bordsel[]        = "#8aadf4";
-static const char col_fg[]             = "#cad3f5";
-static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_fg, col_bgnorm, col_bordnorm },
-	[SchemeSel]  = { col_bgnorm, col_bgsel,  col_bordsel  },
+static const int user_bh 			= 0;	/* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const unsigned int borderpx  		= 2;        /* border pixel of windows */
+static const Gap default_gap        		= {.isgap = 0, .realgap = 0, .gappx = 8};
+static const unsigned int snap      		= 32;       /* snap pixel */
+static const unsigned int systraypinning 	= 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
+static const unsigned int systrayonleft 	= 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
+static const unsigned int systrayspacing 	= 2;   /* systray spacing */
+static const int systraypinningfailfirst	= 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
+static const int showsystray			= 1;     /* 0 means no systray */
+static const int showbar            		= 1;        /* 0 means no bar */
+static const int topbar             		= 1;        /* 0 means bottom bar */
+static const char *fonts[]          		= { "JetBrainsMono Nerd Font:size=10" }; 
+static const char dmenufont[]       		= "monospace:size=10";
+static const char col_bgnorm[]         		= "#24273a";
+static const char col_bgsel[]          		= "#8aadf4";
+
+static const char col_bordnorm[]       		= "#494d64";
+static const char col_bordsel[]        		= "#8aadf4";
+
+static const char col_fg[]             		= "#cad3f5";
+
+static const char *colors[][3]      		= {
+	/*           				    fg         bg         border   */
+	[SchemeNorm] 							= { col_fg, col_bgnorm, col_bordnorm },
+	[SchemeSel]  							= { col_bgnorm, col_bgsel,  col_bordsel  },
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] 					= { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
-static const Rule rules[] = {
+static const Rule rules[] 					= {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
@@ -43,12 +47,12 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
-static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
+static const float mfact     				= 0.5; /* factor of master area size [0.05..0.95] */
+static const int nmaster     				= 1;    /* number of clients in master area */
+static const int resizehints 				= 1;    /* 1 means respect size hints in tiled resizals */
+static const int lockfullscreen 			= 1; /* 1 will force focus on the fullscreen window */
 
-static const Layout layouts[] = {
+static const Layout layouts[] 			= {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
@@ -69,15 +73,15 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-p", "search ", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bgnorm, "-nf", col_fg, "-sb", col_bgsel, "-sf", col_bgnorm, NULL };
-static const char *termcmd[]  = { "alacritty"};
+static const char *dmenucmd[] 				= { "dmenu_run", "-p", "search ", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bgnorm, "-nf", col_fg, "-sb", col_bgsel, "-sf", col_bgnorm, NULL };
+static const char *termcmd[]  				= { "alacritty"};
 
-static const char *mutecmd[] = { "pactl", "set-sink-mute", "0", "toggle", NULL };
-static const char *volupcmd[] = { "pactl", "set-sink-volume", "0", "+10%", NULL };
-static const char *voldowncmd[] = { "pactl", "set-sink-volume", "0", "-10%", NULL };
-static const char *netcmd[] = {"networkmanager_dmenu", NULL };
-static const char *brupcmd[] = { "brightnessctl", "set", "+10%", NULL };
-static const char *brdowncmd[] = { "brightnessctl", "set", "10%-", NULL };
+static const char *mutecmd[] 				= { "pactl", "set-sink-mute", "0", "toggle", NULL };
+static const char *volupcmd[] 				= { "pactl", "set-sink-volume", "0", "+10%", NULL };
+static const char *voldowncmd[] 			= { "pactl", "set-sink-volume", "0", "-10%", NULL };
+static const char *netcmd[] 				= {"networkmanager_dmenu", NULL };
+static const char *brupcmd[] 				= { "brightnessctl", "set", "+10%", NULL };
+static const char *brdowncmd[] 				= { "brightnessctl", "set", "10%-", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        	argument */
@@ -150,7 +154,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,		XK_q,	   quit,	   {0} },
 	{ MODKEY|ShiftMask,             XK_r,      quit,           {1} }, 
 };
 

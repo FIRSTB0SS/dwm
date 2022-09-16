@@ -69,6 +69,7 @@ static const struct arg args[] = {
 	{ netspeed_rx,	" %s  |  ",		"wlan0"},
 	{ wifi_perc,	"%s%%  ",		"wlan0"},
 	{ wifi_essid,	"%s  |  ",		"wlan0"},
+	{ run_command,	" %s%%  |  ",		"light"},
 	{ run_command,	"Vol  %s%%  |  ",	"pamixer --get-volume"},
 	{ battery_perc, "  %s%%  |  ",	"BAT0"},
 	{ datetime, 	"%s  |",		"%a %d  %H:%M" },
